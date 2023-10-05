@@ -1,0 +1,80 @@
+* {
+    /* Vi gir margin: 0; til alle elementer da vi heller ønsker å gi margins der vi faktisk trenger dette */
+    margin: 0;
+}
+
+.text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40svh;
+    text-align: center;
+}
+
+.bg-img
+
+/* Dette er classen vi ga til divven som vi ønsker å plassere bakgrunnsbildet i */
+    {
+    /* height: 100svh; endrer høyden på div fra 0px til å ha en størrelse tilsvarende 100% av høyden til skjermen */
+    height: 100svh;
+    /* Vi bruker background-repeat: no-repeat; for å unngå at bakgrunnsbilder repterer seg om 
+        de ikke er stor nok til å dekke hele område de er plassert i */
+    background-repeat: no-repeat;
+    /* background-position spesifiserer bildets plassering i det spesifiserte området */
+    background-position: top;
+    /* background-size: cover; får bildet til å dekke hele seksjonen det er plassert i, 
+        ved å strekke bildet slik at det vil passe om nødvendig */
+    background-size: cover;
+    /* background-attachment: fixed; bruker vi her for å oppnå en "parallax effekt" ved at bildet blir på samme posisjon, 
+        mens innholdet vi ruller ned til går over bildet. */
+    background-attachment: fixed;
+}
+
+.first {
+
+    background-image: url(./images/bergen-skilt.jpg);
+}
+
+.second {
+    background-image: url(./images/bryggen.jpg);
+}
+
+.third {
+    background-image: url(./images/lehmkuhl.jpg);
+}
+
+.fourth {
+    background-image: url(./images/bergen-at-night.jpg);
+}
+
+
+
+/* Om man ønsker å gjøre bakgrunssbilder gjennomsiktig uten at alt annet i elementet blir gjennomsiktigt */
+.waves {
+    color: #000;
+    font-weight: bold;
+    font-size: 25px;
+
+    /* Vi gir "parenten" en position relativ slik at position: absolute; vil være relativt til parent elementet og ikke hele dokumentet */
+    position: relative;
+    /* isolation: isolate; lager en "stacking context"  */
+    isolation: isolate;
+}
+
+/* ::after er et pseudo element setter inn noe etter innholdet i det valge elementet */
+.waves::after {
+    /* Vi bruker content:; for å spesifisere innholdet vi vil sette inn, i dette tilfellet ønsker vi ikke noe content, 
+    da et background-image ikke teller som content slik som eventuell tekst ville gjort, 
+    men vi er fremdeles nødt til å inkludere content, men vi lar den stå tom */
+    content: "";
+    background-image: url(./images/waves.jpg);
+    /* position: absolute; fjerner elementet fra den normale "flowen" til dokumentet, 
+        og det lages ikke no plass til den, men den vil plassere seg oppå alt annet */
+    position: absolute;
+    /* z-index: -1; plasserer elementet bakerst i stacking contexten slik at bildet kommer bak teksten */
+    z-index: -1;
+    /* inset: 0; definerer block (top og bunn) og inline (venste og høyre) start og slutt punkt for bildet */
+    inset: 0;
+    /* opacity endrer hvor mye gjennomsiktig elementet er på en skala fra 0 - 1, hvor 1 er normalt og 0 er helt gjennomsiktig */
+    opacity: .5;
+}
